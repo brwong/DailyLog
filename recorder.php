@@ -1,5 +1,9 @@
 <?php
 
+if($_COOKIE['daily']!='brandonjournal'){
+	exit("unauthorized");
+}
+
 // date | steps | meals | events | thoughts
 
 require("access.php");
