@@ -1,4 +1,35 @@
+<?php
+
+$okay = false;
+if($_COOKIE['daily']=='brandonjournal'){
+	$okay = true;
+}
+elseif(isset($_POST['access']) && $_POST['access']=="freehappens"){
+	if(isset($_POST['packet'])){
+		if($_POST['packet']=="5147481572"){
+			$okay = true;
+			setcookie('daily', 'brandonjournal', time()+3600);
+		}
+		else{
+			$badattempt = true;
+		}
+	}
+}
+if(!$okay){
+	if($_REQUEST['alt']=='key'){
+		require('gate-numpad.php');
+	}
+	else{
+		require("gate.php");
+	}
+}
+
+?>
 <html>
+<head>
+	<meta name="ROBOTS" content="NONE, NOINDEX, NOFOLLOW, NOARCHIVE" />
+	<title>Daily Log</title>
+</head>
 <body>
 <!--<pre style="_word-wrap:break-word;white-space:pre-wrap;">-->
 <pre>
@@ -20,6 +51,7 @@ while($line = $res->fetch_array()){
 		$food = str_replace("evening_meal", "evening meal ", $food);
 		echo "\tmeals:\n\t\t" . $food . "<br />";
 	}
+	if($line['sleep']) echo "\tsleep: ".$line['sleep'] . "<br />";
 	if($line['events']) echo "\tevents:\n\t\t" . str_replace("\n", "\n\t\t", $line['events']) . "<br />";
 	if($line['thoughts']) echo "\tthoughts:\n" . $line['thoughts'] . "<br />";
 	echo "<br />";

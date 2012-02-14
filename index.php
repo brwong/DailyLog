@@ -2,10 +2,15 @@
 
 require("accept.php");
 $okay = false;
-if(isset($_POST['access']) && $_POST['access']=="freehappens"){
+if($_COOKIE['daily']=='brandonjournal'){
+	$okay = true;
+	setcookie('daily', 'brandonjournal', time()+21600);
+}
+elseif(isset($_POST['access']) && $_POST['access']=="freehappens"){
 	if(isset($_POST['packet'])){
 		if($_POST['packet']==$accepted){
 			$okay = true;
+			setcookie('daily', 'brandonjournal', time()+21600);
 		}
 		else{
 			$badattempt = true;
@@ -13,12 +18,18 @@ if(isset($_POST['access']) && $_POST['access']=="freehappens"){
 	}
 }
 if(!$okay){
-	require("gate.php");
+	if($_REQUEST['alt']=='key'){
+		require('gate-numpad.php');
+	}
+	else{
+		require("gate.php");
+	}
 }
 
 ?>
 <html>
 <head>
+<meta name="ROBOTS" content="NONE, NOINDEX, NOFOLLOW, NOARCHIVE" />
 <title>Daily Log</title>
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
@@ -84,7 +95,7 @@ div#subtitle {
 	left:160px;
 }
 #thoughts {
-	height:200px;
+	height:100px;
 	width:400px;
 }
 #submit {
@@ -146,8 +157,10 @@ function writeup(stuff){
 			}
 		}
 	}
-	//events
 	food = stuff['meals'].indexOf("\r\n")!=-1 ? stuff['meals'].split("\r\n") : stuff['meals'].split("\n");
+	//sleep
+	$('input#sleep').val(stuff['sleep']);
+	//events
 	ev = stuff['events'].indexOf("\r\n")!=-1 ? stuff['events'].split("\r\n") : stuff['events'].split("\n");
 	if(ev.length > 0) $('input[name="hap0"]').val(ev[0]);
 	if(ev.length > 1){
@@ -270,6 +283,10 @@ $(function (){
 	<input type="text" name="supper" />
 	<span id="meals_third"></span>
 	<a href="#" class="act" onclick="return addit('evening_meal','meals_third');">add</a>
+</span><br />
+<span id="sleep">
+	<div class="label">sleep:</div>
+	<input type="text" id="sleep" name="sleep" />
 </span><br />
 <span id="events">
 	<div class="label">events:</div>

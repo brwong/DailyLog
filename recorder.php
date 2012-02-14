@@ -42,6 +42,7 @@ if($_GET['action']=='update'){
 		$q .= " steps=";
 		$q .= $_POST['steps'] ? $_POST['steps'] : "''";
 		$q .= ", meals='" . $meals . "'";
+		$q .= ", sleep='" . $_POST['sleep'] . "'";
 		$q .= ", events='" . $events . "'";
 		$q .= ", thoughts='" . $_POST['thoughts'] . "'";
 		$q .= " WHERE date=" . $_REQUEST['date'];
@@ -53,6 +54,8 @@ if($_GET['action']=='update'){
 		$q .= $_POST['steps'] ? $_POST['steps'] : "''";
 		$q .= ', ';
 		$q .= $meals ? "'".$meals."'" : "''";
+		$q .= ', ';
+		$q .= $_POST['sleep'] ? "'".$_POST['sleep']."'" : "''";
 		$q .= ', ';
 		$q .= $events ? "'".$events."'" : "''";
 		$q .= ', ';

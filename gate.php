@@ -161,7 +161,7 @@
 		Unfortunately, if you are seeing this message, it means that it doesn't work; most likely because of your antiquated browser.
 	</canvas>
 	
-	<form id="package" method="POST" action="index.php">
+	<form id="package" method="POST" action="">
 	<input type="hidden" name="access" value="freehappens" />
 	<input type="hidden" name="packet" id="packet" />
 	</form>
@@ -170,7 +170,8 @@
 		echo $_POST['packet'];
 	}
 	?>
-
+	<br />
+	
 	</body>
 </html>
 <?php

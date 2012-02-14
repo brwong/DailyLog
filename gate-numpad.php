@@ -55,7 +55,7 @@
 	<button id="clearing">X</button>
 	<button id="confirm">ENTER</button>
 	
-	<form id="package" method="POST" action="index.php">
+	<form id="package" method="POST" action="">
 	<input type="hidden" name="access" value="freehappens" />
 	<input type="hidden" name="packet" id="packet" />
 	</form>
