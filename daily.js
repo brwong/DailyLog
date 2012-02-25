@@ -20,7 +20,12 @@ function slate(){
 function writeup(stuff){
 	slate();
 	//steps
-	$('input[name="steps"]').val(stuff['steps']);
+	if(stuff['steps'] != "0" && stuff['steps'] != 0){
+		$('input[name="steps"]').val(stuff['steps']);
+	}
+	else{
+		$('input[name="steps"]').val('');
+	}
 	//meals
 	food = stuff['meals'].indexOf("\r\n")!=-1 ? stuff['meals'].split("\r\n") : stuff['meals'].split("\n");
 	for(var i=0; i<food.length; i++){
