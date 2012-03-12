@@ -44,14 +44,14 @@ div#subtitle {
 	position:relative;
 	left:100px;
 	display:inline;
-	width:250px;
+	width:400px;
 }
 .ml .act {
 	position:relative;
 	left:100px;
 }
 #events input {
-	width:400px;
+	width:600px;
 }
 #eventsbox input {
 	position:relative;
@@ -59,7 +59,7 @@ div#subtitle {
 }
 #thoughts {
 	height:100px;
-	width:400px;
+	width:600px;
 }
 #submit {
 	font-size: 120%;
